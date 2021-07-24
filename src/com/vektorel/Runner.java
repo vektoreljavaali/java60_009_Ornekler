@@ -24,8 +24,9 @@ public class Runner {
 			System.out.println("3- Not Düzeltme");
 			System.out.println("4- Öðrenci Listesi");
 			System.out.println("5- Öðrenci Silme");
-			System.out.println("6- Sýnýf Not Listesi");
+			System.out.println("6- Sýnýf Not Listesi");			
 			System.out.println("7- Sýnýf Belirleme");
+			System.out.println("8- Eksik Bilgi Listesi");
 			System.out.println("0- ÇIKIÞ");
 			System.out.println();
 			System.out.print("Seçiniz....: ");
@@ -62,7 +63,18 @@ public class Runner {
 					
 				}
 				break;
-			case 2:	break;
+			case 2:	
+				for(int i=0;i<sinifmevcudu;i++) {
+					
+					sc = new Scanner(System.in);
+					System.out.println("Öðrenci..: "+sinifListesi[i][1]);
+					System.out.print("Vize Notu...: ");
+					sinifListesi[i][3]= sc.nextLine();
+					System.out.print("Fina notu...: ");
+					sinifListesi[i][4]= sc.nextLine();
+					System.out.println("-----------------------------");
+				}
+				break;
 			case 3:	break;
 			case 4:
 				System.out.println("*******************************");
@@ -72,7 +84,7 @@ public class Runner {
 				
 				for(int i=0;i<sinifmevcudu;i++) {
 					System.out.print(sinifListesi[i][0]+" ");System.out.print("	");
-					System.out.print(sinifListesi[i][1]+" ");System.out.print("		");
+					System.out.print(sinifListesi[i][1]+" ");System.out.print("	");
 					System.out.print(sinifListesi[i][2]+" ");System.out.print("	");
 					System.out.print(sinifListesi[i][3]+" ");System.out.print("	");
 					System.out.print(sinifListesi[i][4]+" ");System.out.print("	");					
@@ -83,11 +95,50 @@ public class Runner {
 				
 				break;
 			case 5:	break;
-			case 6:	break;
+			case 6:
+				System.out.println("Öðrenci Adý| Not | Durumu");
+				for(int i=0;i<sinifmevcudu;i++) {
+					System.out.print(sinifListesi[i][1]+"	");
+					int vize_notu = Integer.parseInt(sinifListesi[i][3]);
+					int final_notu = Integer.parseInt(sinifListesi[i][4]);
+					int ortalama = (vize_notu+final_notu)/2;
+					System.out.print(ortalama+"	");
+					if(ortalama>=50)
+						System.out.print("GEÇTÝ");
+					else
+						System.out.print("KALDI");
+					System.out.println();
+				}
+				
+				
+				break;
 			case 7:
 				System.out.print("Lütfen Sýnýf Mevcudunu giriniz...: ");
 				sinifmevcudu = sc.nextInt();
-				break;			
+				break;	
+			case 8: 
+				System.out.println("*******************************");
+				System.out.println("***** Eksik Bilgi LÝSTESÝ *****");
+				System.out.println("*******************************");				
+				System.out.println("Okul No | Ad Soyad    | Sýnýfý | Vize | Final");
+				
+				for(int i=0;i<sinifmevcudu;i++) {
+					if(sinifListesi[i][0]=="" ||
+					   sinifListesi[i][1]=="" ||
+					   sinifListesi[i][2]=="" ||
+					   sinifListesi[i][3]=="" ||
+					   sinifListesi[i][4]=="" ) {
+					System.out.print(sinifListesi[i][0]+" ");System.out.print("	");
+					System.out.print(sinifListesi[i][1]+" ");System.out.print("	");
+					System.out.print(sinifListesi[i][2]+" ");System.out.print("	");
+					System.out.print(sinifListesi[i][3]+" ");System.out.print("	");
+					System.out.print(sinifListesi[i][4]+" ");System.out.print("	");					
+					System.out.println();
+					}
+				}
+				
+				System.out.println();
+				break;
 			case 0: System.out.println("ÇIKIÞ YAPILDI");	break;
 			default: System.out.println("Geçersiz seçim yaptýnýz.");
 				break;
